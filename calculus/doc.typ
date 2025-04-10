@@ -221,10 +221,36 @@
 #lemma[
   Let $a, b in RR$ with $a < b$ and $f: [a, b] -> RR$ a bounded
   function $
-      L(f, P) <= sum _(k=1)^n f(overline(x_k)) dot Delta x_k <= U(f, P),
-      quad overline(x) in [x_(k-1), x_k].
+      L(f, P) <= sum _(k=1)^n f(overline(x)_k) dot Delta x_k <= U(f, P),
+      quad overline(x)_k in [x_(k-1), x_k].
   $ If $f$ is integrable, then $
-      abs(integral _a^b f - sum _(k=1)^n f(overline(x)) dot Delta x_k) <= U(f, P)
+      abs(integral _a^b f - sum _(k=1)^n f(overline(x)_k) dot Delta x_k) <= U(f, P)
       - L(f, P).
+  $
+]
+#proof[
+  Let $P in P[a, b]$
+  $
+      m_k <= f(overline(x)_k) <= M_k, quad forall k = 0, 1, 2, ..., n.
+  $ $Delta x_k > 0$,
+  $
+      m_k dot Delta x_k <= f(overline(x)_k) dot Delta x_k <= M_k dot Delta x_k
+  $ then, $
+      sum _(k=1)^n m_k              dot Delta x_k <=
+      & sum _(k=1)^n f(overline(x)_k) dot Delta x_k <=
+      sum _(k=1)^n M_k              dot Delta x_k \
+      L(f, P) <= & sum _(k=1)^n f(overline(x)_k) dot Delta x_k <= U(f, P).
+  $
+  #remark[
+    If $f$ is integrable, then $
+      L(f, P) <= integral _a^b f <= U(f, P).
+    $
+  ]
+  Therefore $
+      L(f, P) - U(f, P) <=
+          integral _a^b f - sum _(k=1)^n f(overline(x)_k) dot Delta x_k  <=
+      U(f, P) - L(f, P) \
+      abs(integral _a^b f - sum _(k=1)^n f(overline(x)_k) dot Delta x_k) <=
+      U(f, P) - L(f, P).
   $
 ]

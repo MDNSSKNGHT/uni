@@ -236,9 +236,9 @@
   $
       m_k dot Delta x_k <= f(overline(x)_k) dot Delta x_k <= M_k dot Delta x_k
   $ then, $
-      sum _(k=1)^n m_k              dot Delta x_k <=
+        sum _(k=1)^n m_k              dot Delta x_k <=
       & sum _(k=1)^n f(overline(x)_k) dot Delta x_k <=
-      sum _(k=1)^n M_k              dot Delta x_k \
+        sum _(k=1)^n M_k              dot Delta x_k \
       L(f, P) <= & sum _(k=1)^n f(overline(x)_k) dot Delta x_k <= U(f, P).
   $
   #remark[

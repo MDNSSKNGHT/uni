@@ -334,3 +334,266 @@
   The existance of an isomorphism between $V$ and $W$ vector spaces is denoted
   by $V tilde.eq W$.
 ]
+
+== Space of Linear Maps
+
+#definition[
+  Let $V, W$ denote vector spaces over a field $FF$, the set $
+      cal(L)(V, W) = { T: V -> W | T " is a linear map" }
+  $ with the operations $
+      (T + L)(vv) &= T(vv) + L(vv) quad vv in V \
+      (lambda T)(vv) &= lambda T(vv) quad vv in V, lambda in FF \
+  $ is a vector space.
+]
+
+#remark[
+  If $W = FF$ we denote $cal(L)(V, FF)$ as $V^*$ and call it the dual
+  space of $V$.
+]
+
+#pagebreak()
+
+#proposition[
+  Let $V$ be a vector space over a field $FF$. Then the vector space $cal(L)(
+  FF, V)$ is isomorphic to $V$. That is, $
+      cal(L)(FF, V) tilde.equiv V.
+  $
+]
+#proof[
+  We define a map $Phi: cal(L)(FF, V) -> V$ by $Phi(f) = f(1)$. We will show
+  that this map is a vector space isomorphism.
+
+  + $Phi$ is well-defined. For any $f in cal(L)(FF, V), f(1) in V$, so the
+    map makes sense.
+  + $Phi$ is linear. Let $f, g in cal(L)(FF, V)$, and $a, b in FF$
+    $
+        Phi(a f + b g) = (a f + b g)(1) = a f(1) + b f(1) =
+        a Phi(f) + b Phi(g).
+    $
+  + $Phi$ is bijective.
+    - Injective. If $Phi(f) = Phi(g)$, then $f(1) = g(1)$, so $
+        f(lambda) = lambda f(1) = lambda g(1) = g(lambda),
+      $ hence $f = g$.
+    - Surjective. For any $vv in V$, define $f_vv : FF -> V$ by $f_vv
+      (lambda) = lambda vv$. Then $f_vv in cal(L)(FF, V)$ and $Phi(f_vv) = f_vv (1)
+      = vv$.
+]
+
+#proposition[
+  Let $V$ be a finite-dimensional vector space over a field $FF$. Then $V$ is
+  isomorphic to $V^*$. That is, $
+      V tilde.equiv V^*
+  $
+]
+#proof[
+  Assume ${ vv_1, vv_2, ..., vv_n }$ basis of $V$. We define the linear map $
+      f_j : V -> FF " by " f_j(vv_i) = cases(
+        1 quad i = j,
+        0 quad i != j
+      )
+  $ It suffices to show that the set $B = { f_1, f_2, ..., f_n }$ is a basis of
+  $V^*$.
+
+  + $B$ spans $im(T)$. Let $f in V^*$ and let $s_j = f(vv_j).$
+    $
+        f(vv) &= f(t_1 vv_1 + t_2 vv_2 + ... + t_n vv_n) quad t_i in FF \
+        &= t_1 f(vv_1) + t_2 f(vv_2) +... + t_n f(vv_n) \
+        &= t_1 s_1 + t_2 s_2 + ... + t_n s_n \
+        &= s_1 f_1 (vv) + s_2 f_2 (vv) + ... + s_n f_n (vv)
+    $
+  + $B$ is linearly independent. Suppose that $r_i in FF$ satisfy $
+        r_1 f_1 (vv) + r_2 f_2 (vv) + ... + r_n f_n (vv) = 0.
+  $ Evaluate for $vv = vv_i$  $
+        r_1 f_1 (vv) + r_2 f_2 (vv) + ... + r_n f_n (vv) =
+        r_i = 0,
+  $ so $r_1 = ... = r_n = 0$.
+]
+
+#remark[
+  If $dim V = + infinity$, then $V tilde.equiv.not V^*$.
+]
+
+#proposition[
+  Let $V, W$ be finite-dimensional vector spaces. Then, $
+      dim cal(L)(V, W) = dim V dot dim W.
+  $
+]
+
+#proposition[
+  Let $U, V, W$ denote vector spaces over a field $FF$. From the sequence $
+      U stretch(arrow, size: #2em)^T V stretch(arrow, size: #2em)^L W
+  $ observe that if
+  - $L compose T = id_U$. Then, $L$ is a left inverse of $T$.
+  - $T compose L = id_V$. Then, $L$ is a right inverse of $T$.
+  - $L compose T = id_U$ and $T compose L = id_V$. Then, $L$ is the inverse of $T$ and is
+    denoted by $L = T^(-1)$. Thus, $T$ is invertible.
+]
+
+#proposition[
+  Let $T$ be a linear map. Observe that if
+  + $T$ admits an inverse, that inverse is uniquely determined.
+  + $T$ is a monomorphism $<=>$ $T$ is left-invertible.
+  + $T$ is an epimorphism $<=>$ $T$ is right-invertible.
+  + $T$ is an isomorphism $<=>$ $T$ is invertible.
+]
+
+== Projections
+#definition[
+  Let $V$ be a vector space. Suppose that $V = U plus.circle S$ with $U < V$ and  $S < V$. We
+  define the linear maps $P: V -> V$ and $Q: V -> V$ by $
+      P(vu + vv) = vu, quad Q(vu + vv) = vv, quad vu in U, vv in S.
+  $ Then $P$ is called the projection of $V$ onto $U$ and $Q$ is called the projection of $V$
+  onto $S$.
+]
+
+#proposition[
+  Let $P$ and $Q$ be projections on the vector space $V$. Then $P$ and $Q$ possess the following
+  properties
+  + $P^2 = P$ and $Q^2 = Q$.
+  + $P compose Q = Q compose P = v0$.
+  + $P + Q = id_V$.
+]
+#proof[
+  Let $vu in U$ and $vv in S$.
+  + $P^2(vu + vv) = P(P(vu + vv)) = P(vu) = vu = P(vu + vv)$.
+  + $P compose Q (vu + vv) = P(vv) = v0$, and $Q compose P (vu + vv) = Q(vu) = v0$.
+  + $(P + Q)(vu + vv) = P(vu + vv) + Q(vu + vv) = vu + vv$. Thus, $P + Q = id_V$.
+]
+
+#proposition[
+  Let $P: V -> V$ be a linear map. Then $P$ is a projection if and only if $P$
+  is idempotent, that is, $P^2 = P$.
+]<idem>
+
+#proof[
+  + If $P$ is a projection, then $P^2 = P$.
+  + Let $U = { vu in V : P(vu) = vu } < V$ and $S = ker(P) < V$. Then, $V = U plus.circle S$.
+    - $U inter S = { v0 }$. Let $vu in U inter S$. Then, $P(vu) = vu = v0$.
+    - $V = U plus S$. Let $vv in V$. Then, $vv = P(vv) + vv - P(vv)$.
+]
+
+#proposition[
+  Let $P_1: V -> V$ and $P_2: V -> V$ be linear maps. Then $P_1 + P_2$ is a projection if and
+  only if $P_1 compose P_2 = P_2 compose P_1 = v0$.
+]
+
+#proof[
+  The proof is left to the reader.
+]
+
+#definition[
+  Let $V$ be a vector space and $T: V -> V$ be a linear map. A subspace $W subset.eq V$ is
+  called invariant under $T$ if $T(W) subset.eq W$.
+]
+
+#proposition[
+  Let $V$ be a vector space. Suppose that $V = U plus.circle S$ with $U$ and $S$ subspaces of
+  $V$. Let $P: V -> V$ be a projection over $U$ and let $T: V -> V$ be a linear map. Then, $U$
+  is invariant under $T$ if and only if $P compose T = T compose P$.
+]
+
+#proof[
+  The proof is left to the reader.
+]
+
+#proposition[
+  Let $V$ be a vector space and let $T: V -> V$ be an involution, that is, $T^2 = id_V$. Then,
+  there exists $P: V -> V$ a projection such that $T = 2P - id_V$.
+]
+
+#proof[
+  Let $P: V -> V$ be defined by $P(vv) = 1/2 (T(vv) + id_V)$, $vv in V$. Then, $
+      P^2(vv) &= P(P(vv)) = P(1/2 (T(vv) + id_V)) \
+      &= 1/2 (T(1/2 (T(vv) + id_V)) + id_V) \
+      &= 1/2 (1/2 T(T(vv) + id_V) + id_V) \
+      &= 1/2 (1/2 (T(T(vv)) + T(id_V)) + id_V) \
+      &= 1/2 (1/2 (T(vv) + T(vv)) + id_V) \
+      &= 1/2 (T(vv) + id_V) = P(vv).
+  $ Thus, from @idem, $P$ is a projection.
+]
+
+#pagebreak()
+
+== Annhilator
+#definition[
+  Let $V$ be a vector space over a field $FF$, and $A subset.eq V$. The annhilator of $A$ in $V*$
+  is the set $
+      A^0 = { f in V* : f(vu) = 0 thick forall vu in A } subset.eq V.
+  $
+]
+
+#proposition[
+  Let $V$ be a vector space over $FF$ and $A subset.eq V$. Then,
+  + $forall A subset.eq V, A^0 < V^* $.
+  + $V^0 = { 0 }$.
+  + ${ 0 }^0 = V^*$.
+  + If $A without { 0 } != emptyset -> A^0 != V^0$.
+  + If $A subset.eq B subset.eq V -> A^0 supset.eq B^0$.
+]
+
+#proof[
+  The proof is left to the reader.
+]
+
+#proposition[
+  Let $V$ be a finite-dimensional vector space over $FF$ and let $S$ be a subspace of $V$. Then
+  + $V^* slash S^0 tilde.equiv S^*$.
+  + $dim V = dim S + dim S^0$.
+]
+
+#proof[
+  The proof is left to the reader.
+]
+
+#proposition[
+  If the vector space $V$ is finitely generated and $S < V$. Then $S^(00) = S$.
+]
+
+#proof[
+  The proof is left to the reader.
+]
+
+== Transpose of a Linear Map
+#definition[
+  Let $T: U -> V$ a linear map. The transpose of $T$ is defined as $T^T: V^* -> U^*$ by
+  $T^T (f) = f compose T, forall f in V^*$ $
+    #align(center)[
+      #diagram(cell-size: 15mm,
+        node((0, 0), $U$, name: <A>),
+        node((1, 0), $V$, name: <B>),
+        node((1, 1), $FF$, name: <C>),
+        edge(<A>, <C>, "->", $f compose T$, label-side: right),
+        edge(<A>, <B>, "->", $T$),
+        edge(<B>, <C>, "->", $f$, label-side: left)
+      )
+    ]
+  $
+]
+
+#proposition[
+  Let $T: U -> V$ and $L: U -> V$ be a linear map. Then,
+  + $forall alpha in FF, (alpha T)^T = alpha T^T$.
+  + $(T + L)^T = T^T + L^T$.
+  + $(L compose T)^T = T^T compose L^T$ for the sequence $U
+      stretch(arrow, size: #2em)^T V
+      stretch(arrow, size: #2em)^L W $.
+  + If $T$ admits an inverse, then $(T^(-1))^T = (T^T)^(-1)$.
+  + If $I: U -> U$ is the identity map in $U$, then $I^T: U^* -> U^*$ is the identity map in
+    $U^*$.
+]
+
+#proof[
+  The proof is left to the reader.
+]
+
+#proposition[
+  Let $U$ and $V$ denote vector spaces and Let $T: U -> V$ be a linear map. Then,
+  + $[T(vv)]^0 = ker T^T$.
+  + $T^T (V^*) subset.eq [ker T]^0$.
+  + If $U$ and $V$ are finitely generated, then $dim T(U) = dim T^T (V^*)$.
+  + If $U$ and $V$ are finitely generated, then $[ker T]^0 = T^T (V^*)$.
+]
+
+#proof[
+  The proof is left to the reader.
+]

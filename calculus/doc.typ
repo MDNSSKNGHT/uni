@@ -9,13 +9,9 @@
       name: "Leonardo Estacio",
       department: [Faculty of Science],
       organization: [National University of Engineering],
-      // location: [Tennessee, TN 59341],
       email: "leonardo.estacio.h@uni.pe",
-      // url: "math.ue.edu/~jdoe"
     ),
   ),
-  // abstract: lorem(100),
-  // bibliography: bibliography("refs.bib"),
 )
 
 #show: great-theorems-init
@@ -25,13 +21,33 @@
   inherited_levels: 1
 )
 
+#let mathcounter_def = rich-counter(
+  identifier: "mathblocks_def",
+  inherited_levels: 1
+)
+
 #let definition = mathblock(
     blocktitle: "Definition",
-    counter: mathcounter
+    counter: mathcounter_def
 )
 
 #let lemma = mathblock(
     blocktitle: "Lemma",
+    counter: mathcounter
+)
+
+#let theorem = mathblock(
+    blocktitle: "Theorem",
+    counter: mathcounter
+)
+
+#let proposition = mathblock(
+    blocktitle: "Proposition",
+    counter: mathcounter
+)
+
+#let corollary = mathblock(
+    blocktitle: "Corollary",
     counter: mathcounter
 )
 
@@ -40,7 +56,16 @@
   prefix: [_Remark._],
   inset: 8pt,
   stroke: 0.2pt + black,
-  // fill: lime,
+  fill: luma(230),
+  radius: 1pt,
+)
+
+#let claim = mathblock(
+  blocktitle: "Claim",
+  prefix: [_Claim._],
+  inset: 8pt,
+  stroke: 0.2pt + black,
+  fill: luma(230),
   radius: 1pt,
 )
 
@@ -282,4 +307,35 @@
       abs(integral _a^b f - sum _(k=1)^n f(overline(x)_k) dot Delta x_k) <=
       U(f, P) - L(f, P).
   $
+]
+
+#pagebreak()
+
+#proposition[
+  If $f$ is a nondecreasing function over $[a, b]$, then $f$ is integrable over
+  $[a, b]$.
+]
+
+#proof[
+  Let $P in cal(P)[a, b]$.
+  $
+    U(f, P) - L(f, P) &= sum _(k=1)^n [f(x_k) - f(x_(k-1))] Delta x_k \
+    &<= ||P|| sum _(k=1)^n [f(x_k) - f(x_(k-1))] \
+    &<= ||P||[f(b) - f(a)], quad forall P in cal(P)[a, b].
+  $
+  For any given $epsilon > 0$ define $||P|| = epsilon / (f(b) - f(a))$, therefore
+  $
+      U(f, P) - L(f, P) < epsilon.
+  $
+  From @lem, $f$ is an integrable function.
+]
+
+#proposition[
+  Let $f$ be a differentiable over $[a, b]$ and $|f'(x)| <= k, forall x
+  in [a, b]$. From the MVT
+  + $forall P in cal(P)[a, b]: U(f, P) - L(f, P) <= k||P||(b - a)$.
+  + $f$ is integrable over $[a, b]$.
+  + $
+        abs(integral _a ^b f(x) dif x - 1/2 (U(f, P) + L(f, P))) <= 1/2 k||P||(b - a).
+    $
 ]

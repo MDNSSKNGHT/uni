@@ -394,7 +394,7 @@
   $ It suffices to show that the set $B = { f_1, f_2, ..., f_n }$ is a basis of
   $V^*$.
 
-  + $B$ spans $im(T)$. Let $f in V^*$ and let $s_j = f(vv_j).$
+  + $B$ spans $V^*$. Let $f in V^*$ and let $s_j = f(vv_j).$
     $
         f(vv) &= f(t_1 vv_1 + t_2 vv_2 + ... + t_n vv_n) quad t_i in FF \
         &= t_1 f(vv_1) + t_2 f(vv_2) +... + t_n f(vv_n) \
@@ -407,6 +407,9 @@
         r_1 f_1 (vv) + r_2 f_2 (vv) + ... + r_n f_n (vv) =
         r_i = 0,
   $ so $r_1 = ... = r_n = 0$.
+
+  The isomorphism we are looking for is the map defined as $phi: V -> V^*$ by
+  $phi(vv_j) = f_j$ for $j = 1, ..., n$.
 ]
 
 #remark[
@@ -516,9 +519,9 @@
 
 == Annhilator
 #definition[
-  Let $V$ be a vector space over a field $FF$, and $A subset.eq V$. The annhilator of $A$ in $V*$
+  Let $V$ be a vector space over a field $FF$, and $A subset.eq V$. The annhilator of $A$ in $V^*$
   is the set $
-      A^0 = { f in V* : f(vu) = 0 thick forall vu in A } subset.eq V.
+      A^0 = { f in V^* : f(vu) = 0 thick forall vu in A } subset.eq V^*.
   $
 ]
 

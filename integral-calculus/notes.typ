@@ -50,7 +50,7 @@ as the area under $f$ from $a$ to $b$.
       size: (4, 4), 
       x-tick-step: none,
       y-tick-step: none,
-      axis-style: "left",
+      axis-style: "school-book",
       {
         plot.add(domain: (0, 8), x => calc.pow(1.5, x) + 2)
         plot.add(domain: (2, 7), x => 0)
@@ -737,3 +737,696 @@ is called logarithm.
       integral frac(u'(x), u(x)) d x = ln abs(u(x)) + C.
   $
 ]
+
+== Logarithmic derivation
+
+#example[
+  Determine $f'$ if
+  $
+      f(x) = frac((x + 2)(x^2 + 3), sqrt(x + 1)(x^3 + 3)) tan(x).
+  $
+  Take $abs(f(x))$ such that
+  $
+      abs(f(x)) = frac(abs(x + 2)abs(x^2 + 3), sqrt(x + 1)abs(x^3 + 3)) abs(tan(x)).
+  $
+  Evaluate $ln(abs(f(x)))$
+  $
+      ln abs(f(x)) = ln abs(x + 2) + ln abs(x^2 + 3) + ln abs(tan(x)) - ln sqrt(x + 1)
+        - ln abs(x^3 + 3).
+  $
+  Now, derive both sides
+  $
+      (f'(x))/(f(x)) = 1/(x + 2) + (2x)/(x^2 + 3) + (sec^2(x))/tan(x) - 1/(2(x + 1))
+        - (3x^2)/(x^3 + 3).
+  $
+  Therefore,
+  $
+      f'(x) = f(x)(1/(x + 2) + (2x)/(x^2 + 3) + (sec^2(x))/tan(x) - 1/(2(x + 1))
+        - (3x^2)/(x^3 + 3)).
+  $
+]
+
+= The Exponential
+
+Note that the function $ln: (0, +oo) -> RR$ is bijective then $exists ln^*: RR -> (0, +oo)$
+which is the function $exp: RR -> (0, +oo)$ defined by
+$
+    exp(x) = y <=> ln(y) = x, quad forall x in RR.
+$
+
+== Properties of the Exponential
+
+#proposition[
+  Let $x_1, x_2 in RR$. Then, $exp(x_1 + x_2) = exp(x_1) dot exp(x_2)$.
+]
+
+#proof[
+  From $x_1, x_2 in RR => exists! y_1, y_2 in (0, +oo) slash x_1 = ln(y_1), x_2 = ln(y_2)$
+  we get
+  $
+      exp(x_1) = y_1, quad exp(x_2) = y_2.
+  $
+  Moreover
+  $
+      x_1 + x_2 = ln(y_1) + ln(y_2) = ln(y_1 dot y_2).
+  $
+  Thus,
+  $
+      exp(x_1 + x_2) = y_1 dot y_2 = exp(x_1) dot exp(y_2).
+  $
+]
+
+#proposition[
+  Let $x_1, x_2 in RR$. Then,
+  $
+      exp(x_1 - x_2) = exp(x_1) / exp(x_2).
+  $
+]
+
+#proof[
+  From $x_1, x_2 in RR => exists! y_1, y_2 in (0, +oo) slash x_1 = ln(y_1), x_2 = ln(y_2)$
+  we get
+  $
+      exp(x_1) = y_1, quad exp(x_2) = y_2.
+  $
+  Moreover
+  $
+      x_1 - x_2 = ln(y_1) - ln(y_2) = ln(y_1 / y_2).
+  $
+  Thus,
+  $
+      exp(x_1 - x_2) = y_1 / y_2 = exp(x_1) / exp(y_2).
+  $
+]
+
+#proposition[
+  If $r in RR$ then $exp(r dot x) = (exp(x))^r$.
+]
+
+#proof[
+  Note that $x in RR => exists! y in (0, +oo) slash x = ln(y) => exp(x) = y$. Then
+  $
+      ln(y^r) = r dot ln(y) = r dot x => exp(r dot x) = y^r = (exp(x))^r.
+  $
+]
+
+#proposition[
+  $exp(ln(x)) = x, forall x in (0, +oo)$.
+]
+
+#proof[
+  Let $x in (0, +oo)$ and $y = ln(x) => exp(y) = x$. Thus, $exp(ln(x)) = x$.
+]
+
+#proposition[
+  $ln(exp(x)) = x, forall x in RR$.
+]
+
+#proof[
+  Let $x in RR$ and $exp(x) = y => ln(y) = x$. Thus, $ln(exp(x)) = x$.
+]
+
+#remark(numbering: none)[
+  Let $f: D_f -> RR$ a continuous and increasing function then $exists f^*: R_f -> D_f$.
+  Furthermore, $f^*$ is a continuous and increasing function too.
+]
+
+#proposition[
+  $exp: RR -> (0, +oo)$ is a continuous function. That is,
+  $
+      lim_(x -> x_0) exp(x) = exp(lim_(x -> x_0)) = exp(x_0), quad x_0 in RR.
+  $
+]
+
+#proposition[
+  $forall x in RR: exp(x) = e^x$.
+]
+
+#proof[
+  $forall x in RR: x = ln(exp(x))$. Likewise,
+  $
+      ln(e^x) = x ln(e) = x => exp(x) = e^x.
+  $
+]
+
+#proposition[
+  $
+      e = lim_(h -> 0) (1 + h)^(1/h).
+  $
+]
+
+#proof[
+  Let $f(x) = ln(x), forall x in (0, +oo)$ where
+  $
+      f'(x) = 1/x, quad forall x in (0, +oo).
+  $
+  Moreover,
+  $
+      f'(1) &= lim_(h -> 0) frac(f(1+ h) - f(1), h)     \
+         1  &= lim_(h -> 0) frac(ln(1+ h) - ln(1), h)   \
+            &= lim_(h -> 0) ln(1 + h)^(1/h)             \
+            &= ln [lim_(h -> 0) (1 + h)^(1/h)]          \
+       => e &= lim_(h -> 0) (1 + h)^(1/h).
+  $
+]
+
+#proposition[
+  $
+      e = lim_(t -> +oo) (1 + 1/t)^(t).
+  $
+]
+
+#example[
+  Evaluate $
+      alpha = lim_(x -> +oo) ((x + 1)/(x - 3))^x.
+  $
+
+  Indeed,
+  $
+      alpha = lim_(x -> +oo) (1 + 4/(x - 3))^x = lim_(x -> +oo) (1 + 1/((x - 3)/4))^x.
+  $
+  Let $t = (x - 3)/4$,
+  $
+      alpha = lim_(x -> +oo) (1 + 1/t)^(4t + 3) = [lim_(x -> +oo) (1 + 1/t)^t]^4
+        [lim_(x -> +oo) (1 + 1/t)]^3 \
+      => alpha = e^4 dot 1^3 = e^4.
+  $
+]
+
+#remark(numbering: none)[
+  Note that
+  $
+      d / (d x) e^x = e^x, forall x in RR.
+  $
+  Therefore,
+  $
+      integral e^x d x = e^x + C.
+  $
+]
+
+#theorem[
+  Let $f$ be a differentiable function. Then,
+  - $
+        d / (d x) e^f(x) = f'(x) e^f(x).
+    $
+  - $
+        integral f'(x) e^f(x) = e^f(x) + C.
+    $
+    
+]
+
+== The Exponential on a Different Base
+
+Let $a > 0$ with $a != 1$ and the function $f: RR -> RR$ defined by
+$
+    f(x) = a^x, forall x in RR.
+$
+$f$ is called the exponential function with base $a$ and is denoted by
+$
+    exp_a (x) := f(x) = a^x, forall x in RR.
+$
+
+#theorem[
+  $a^x = e^(x ln(a)), forall x in RR.$
+]
+
+#proof[
+  Let $x in RR$. Then
+  $
+      ln(a^x) = x ln(a) => exp(ln(a^x)) = exp(x ln(a))
+  $
+  Likewise
+  $
+      a^x = e^(x ln(a)), forall x in RR.
+  $
+]
+
+#theorem[
+  Let $f$ be a function defined by
+  $
+      f(x) = a^x = e^(x ln(a)), forall x in RR.
+  $
+  Satisfies the following
+  - If $a in (0, 1)$ then the graph of $f$ is decreasing and is concave upward.
+  - If $a > 1$ then the graph of $f$ is increasing and is concave downward.
+]
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-2, 2), x => calc.pow(1.5, x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = a^x, a > 1$)
+    set-origin((5, 0))
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-2, 2), x => calc.pow(0.5, x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = a^x, a in (0, 1)$)
+  })
+]
+
+#theorem[
+  - If $f(x) = a^x, forall x in RR$ then $f'(x) = ln(a) a^x, forall x in RR$.
+  - $
+        integral a^x d x = a^x/ln(a) + C.
+    $
+]
+
+#proof[
+  Note that
+  $
+      d / (d x) a^x = d / (d x) (e^(x ln(a))) = ln(a) e^(x ln(a)) = ln(a) a^x.
+  $
+  For the integral part,
+  $
+      d / (d x) (a^x/ln(a)) = a^x => integral d / (d x) (a^x/ln(a)) d x = integral a^x d x
+  $
+  Likewise
+  $
+      integral a^x d x = integral d / (d x) (a^x/ln(a)) d x = a^x/ln(a) + C.
+  $
+]
+
+#theorem[
+  - $
+        d / (d x) a^f(x) = d / (d x) (e^(f(x) ln(a))) = f'(x) ln(a) a^f(x).
+    $
+  - $
+        integral f'(x) a^f(x) d x = a^f(x)/ln(a) + C.
+    $
+]
+
+== The Logarithm on a Different Base
+
+Let $f: RR -> (0, +oo)$ defined as
+$
+    f(x) = a^x = e^(x ln(a)), quad forall x in RR, a > 0, a != 1.
+$
+The function $f$ is bijective, therefore $exists f^*: (0, +oo) -> RR$. Let $x in (0, +oo)$
+then $exists! y in RR slash a^x = y <=> f^* (y) = x$. Moreover,
+$
+    x ln(a) = ln(y) => x = ln(y) / ln(a).
+$
+The function $f^*(y)$ is denoted as $log_a (y)$.
+
+= Hyperbolic Functions
+
+Let $sinh: RR -> RR$ and $cosh: RR -> RR$ be functions defined as
+$
+    sinh(x) = (e^x - e^(-x))/2, quad cosh(x) = (e^x + e^(-x))/2.
+$
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-2, 2), x => calc.sinh(x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = sinh(x)$)
+    set-origin((5, 0))
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-2, 2), x => calc.cosh(x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = cosh(x)$)
+  })
+]
+
+#remark(numbering: none)[
+  $sinh$ is an odd function and $cosh$ is an even function.
+]
+
+Likewise for $tanh(x)$ and $coth(x)$,
+$
+    tanh(x) = sinh(x) / cosh(x), quad coth(x) = cosh(x) / sinh(x).
+$
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-2, 2), x => calc.tanh(x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = tanh(x)$)
+    set-origin((5, 0))
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-4, -0.1), x => 1 / calc.tanh(x))
+        plot.add(domain: (0.1, 4), style: (stroke: (paint: blue)), x => 1 / calc.tanh(x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = coth(x)$)
+  })
+]
+
+And for $sech(x)$ and $csch(x)$,
+$
+    sech(x) = 1 / cosh(x), quad csch(x) = 1 / sinh(x).
+$
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-4, 4), x => 1 / calc.cosh(x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = sech(x)$)
+    set-origin((5, 0))
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-4, -0.1), x => 1 / calc.sinh(x))
+        plot.add(domain: (0.1, 4), style: (stroke: (paint: blue)), x => 1 / calc.sinh(x))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = csch(x)$)
+  })
+]
+
+== Identities of Hyperbolic Functions
+
+- $sinh(x + y) = sinh(x)cosh(y) + cosh(x)sinh(y)$.
+- $cosh(x + y) = cosh(x)cosh(y) + sinh(x)sinh(y)$.
+- $sinh(2x) = 2sinh(x)cosh(x)$.
+- $cosh(2x) = cosh^2(x) + sinh^2(x)$.
+- $cosh^2(x) - sinh^2(x) = 1$.
+- $1 - tanh^2(x) = sech^2(x)$.
+- $coth^2(x) - 1 = csch^2(x)$.
+- $cosh(x) + sinh(x) = e^x$.
+- $cosh(x) - sinh(x) = e^(-x)$.
+- $cosh(2x) - 1 = 2 sinh^2(x)$.
+- $cosh(2x) + 1 = 2 cosh^2(x)$.
+- $
+    cosh(x/2) = sqrt((cosh(x) + 1)/2), quad sinh(x/2) = plus.minus
+      sqrt((cosh(x) - 1)/2).
+  $
+- $(cosh(x) + sinh(x))^n = cosh(n x) + sinh(n x), forall n in NN$.
+
+== Derivatives of Hyperbolic Functions
+
+- $sinh'(x) = cosh(x)$.
+- $cosh'(x) = sinh(x)$.
+- $tanh'(x) = sech^2(x)$.
+- $coth'(x) = -csch^2(x)$.
+- $sech'(x) = -sech(x)tanh(x)$.
+- $csch'(x) = -csch(x)coth(x), quad x != 0$.
+
+== Integrals of Hyperbolic Functions
+
+- $
+      integral sinh(f(x)) f'(x) d x = cosh(f(x)) + C.
+  $
+- $
+      integral cosh(f(x)) f'(x) d x = sinh(f(x)) + C.
+  $
+
+== Inverse of Hyperbolic Functions
+
+The function $y = sinh(x)$ is injective because $y' > 0$. Therefore, it admits an inverse function
+defined as $y = sinh^(-1)(x), forall x in RR$.
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(
+          domain: (-2, 2),
+          style: (stroke: (paint: red, dash: "dashed")),
+          label: [$x$],
+          x => x
+        )
+        plot.add(
+          domain: (-2, 2),
+          style: (stroke: (paint: blue, dash: "dashed")),
+          label: [$sinh(x)$],
+          x => calc.sinh(x)
+        )
+        plot.add(
+          domain: (-2, 2),
+          label: [$sinh^(-1)(x)$],
+          x => calc.ln(x + calc.sqrt(x * x + 1))
+        )
+      }
+    )
+  })
+]
+
+For the function $y = cosh(x)$ to be injective, it is necessary to define it in an
+interval such as $[0, +oo)$. Thus, the function $y$ admits an inverse function defined as
+$y = cosh^(-1)(x), x >= 1$.
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(
+          domain: (-2, 2),
+          style: (stroke: (paint: red, dash: "dashed")),
+          label: [$x$],
+          x => x
+        )
+        plot.add(
+          domain: (-2, 2),
+          style: (stroke: (paint: blue, dash: "dashed")),
+          label: [$cosh(x)$],
+          x => calc.cosh(x)
+        )
+        plot.add(
+          domain: (1, 4),
+          label: [$cosh^(-1)(x)$],
+          x => calc.ln(x + calc.sqrt(x * x - 1))
+        )
+      }
+    )
+  })
+]
+
+Likewise for $y = sech(x), x >= 0$. The inverse function of $y$ is defined as $sech^(-1)(x),
+forall x in (0, 1]$.
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(
+          domain: (-2, 2),
+          style: (stroke: (dash: "dashed")),
+          label: [$x$],
+          x => x
+        )
+
+        plot.add(
+          domain: (0.1, 1),
+          label: [$sech^(-1)(x)$],
+          x => calc.ln(1 + calc.sqrt(1 - x * x)) - calc.ln(x)
+        )
+      }
+    )
+  })
+]
+
+For $y = tanh(x)$, $y = coth(x)$ and $y = csch(x)$ it is not necessary to define the functions
+in an integral as the functions are already injective in their domain.
+
+#align(center)[
+  #canvas({
+    import draw: *
+
+    set-style(stroke: 0.5pt)
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-0.9, 0.9), x => 1/2 * calc.ln((1 + x)/(1 - x)))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = tanh^(-1)(x), abs(x) < 1$)
+    set-origin((4.5, 0))
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (1.01, 4), x => 1/2 * calc.ln((x + 1)/(x - 1)))
+        plot.add(domain: (-4, -1.01), style: (stroke: (paint: blue)), x => 1/2 * calc.ln((x + 1)/(x - 1)))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = coth^(-1)(x), abs(x) > 1$)
+    set-origin((4.5, 0))
+
+    plot.plot(
+      name: "plot",
+      size: (3, 3),
+      x-tick-step: none,
+      y-tick-step: none,
+      axis-style: "school-book",
+      {
+        plot.add(domain: (-4, -0.1), x => calc.ln(1/x + calc.sqrt(1 + 1 / (x * x))))
+        plot.add(domain: (0.1, 4), style: (stroke: (paint: blue)),  x => calc.ln(1/x + calc.sqrt(1 + 1 / (x * x))))
+      }
+    )
+
+    content(((0,-1), "-|", "plot.south"), $y = csch^(-1)(x), x != 0$)
+  })
+]
+
+== Identities of Inverse Hyperbolic Functions
+
+- $sech^(-1)(x) = cosh^(-1)(x^(-1))$.
+- $csch^(-1)(x) = sinh^(-1)(x^(-1))$.
+- $coth^(-1)(x) = tanh^(-1)(x^(-1))$.
+- $
+      sinh^(-1)(x) = ln(x + sqrt(x^2 + 1)), x in RR.
+  $
+- $
+      cosh^(-1)(x) = ln(x + sqrt(x^2 - 1)), x >= 1.
+  $
+- $ 
+      tanh^(-1)(x) = 1/2 ln((1 + x)/(1 - x)), abs(x) < 1.
+  $
+- $ 
+      coth^(-1)(x) = 1/2 ln((x - 1)/(x - 1)), abs(x) > 1.
+  $
+- $
+      sech^(-1)(x) = ln((1 + sqrt(1 - x^2))/x), x in (0, 1].
+  $
+- $
+      csch^(-1)(x) = ln(1/x + sqrt(1 + x^2)/abs(x)), x != 0.
+  $
+
+== Derivatives of Inverse Hyperbolic Functions
+
+- $
+      d / (d x) sinh^(-1)(x) = 1 / sqrt(x^2 + 1), quad x in RR.
+  $
+
+- $
+      d / (d x) cosh^(-1)(x) = 1 / sqrt(x^2 - 1), quad x >= 1.
+  $
+
+- $
+      d / (d x) tanh^(-1)(x) = 1 / (1 - x^2), quad abs(x) < 1.
+  $
+
+- $
+      d / (d x) coth^(-1)(x) = 1 / (1 - x^2), quad abs(x) > 1.
+  $
+
+- $
+      d / (d x) sech^(-1)(x) = - 1 / (x sqrt(1 - x^2)), quad x in (0, 1).
+  $
+
+- $
+      d / (d x) sech^(-1)(x) = - 1 / (abs(x) sqrt(1 + x^2)), quad x != 0.
+  $
